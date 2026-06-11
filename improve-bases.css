@@ -1,0 +1,21 @@
+/* CSS SNIPPETS TO CUSTOMIZE THE CORE BSAES PLUGIN */ 
+
+/* Bases Card View align center */
+.bases-cards-item{ text-align:center;}
+
+/* Bases Row stripes */
+.bases-tr:nth-child(even) {
+    background-color: #F0F0F0;
+} 
+
+/* Bold the column headers in the Obsidian Bases table view */
+.bases-view .bases-header,
+.bases-view [class*="header"] {
+    font-weight: bold !important;
+}
+
+/* Specific fallback for the inner header text/labels if needed */
+.bases-view th, 
+.bases-view .bases-table-header-icon + span {
+    font-weight: bold !important;
+}
