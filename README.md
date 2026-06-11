@@ -21,3 +21,6 @@ These are Obsidian CSS Snippets to customize several formats without the need fo
 ##### virtual-linker.css
 * Adjusts the height in the now deprecated Virtual Linker/Glossary plugin
 * This may work with the new fakelinks plugin
+
+### Disclosure:
+Some of these were written by hand, some with help from other users, and some with AI assistance. Nothing was vibe-coded. It's all just CSS.
