@@ -1,62 +1,159 @@
-body {
-	--osc-background-color-read: #000000;
-	--osc-background-color-edit: #004080;
-	--osc-color: #00FF00;
-	--osc-font-size-block: 1.25em;
-	--osc-font-size-inline: 1em;
-	--osc-margin-left-right: 1em;
+/* ============================================================
+   green-screen-terminal.css
+   Obsidian CSS Snippet Green-Screen Terminal Code Style
+   Applies to: Reading Mode + Live Preview (CM6)
+   
+   Place in: <vault>/.obsidian/snippets/
+   Activate:  Settings > Appearance > CSS Snippets
+   ============================================================ */
+
+/* SHARED VARIABLES */
+:root {
+  --gs-bg:        #000000;
+  --gs-fg:        #00FF00;
+  --gs-font:      "Consolas", Courier, monospace;
+  --gs-font-size: 1em;
+  --gs-border:    1px solid #00AA00;
+  --gs-radius:    4px;
+  --gs-padding-inline: 0.1em 0.5em;
+  --gs-padding-block:  0.5em 0.5em;
 }
 
-/* Editing inline code */
-.cm-s-obsidian span.cm-inline-code {
-	background-color: var(--osc-background-color-edit);
-	caret-color: yellow; 
-	color: var(--osc-color);
-	font-size: var(--osc-font-size-edit);
-	border-left-color: #ff0000 !important;
-	&::selection {
-		background-color: var(--osc-color);
-		color: var(--osc-background-color-inline);
-	}
+/* --------------------------------------------------------------
+   1.  READING MODE
+       .markdown-reading-view covers the rendered HTML pane
+   -------------------------------------------------------------- */
+/* -- Fenced / indented code blocks --------------------------- */
+.markdown-reading-view pre {
+  background-color: var(--gs-bg) !important;
+  border:           var(--gs-border) !important;
+  border-radius:    var(--gs-radius) !important;
+  padding:          var(--gs-padding-block) !important;
+  margin-left:   1em   !important; /* Use this to "indent" the code block on the left */
+  margin-right:  1em   !important; /* Use this to "indent" the code block on the right */
 }
 
-/* Editing code block */
+.markdown-reading-view pre code {
+  background-color: transparent !important;
+  color:            var(--gs-fg) !important;
+  font-family:      var(--gs-font) !important;
+  font-size:        var(--gs-font-size) !important;
+  text-shadow:      0 0 4px rgba(0, 255, 0, 0.45);
+
+  /* Kill any syntax-highlighter token colours */
+  --code-normal:    var(--gs-fg) !important;
+}
+
+/* Nuke every Prism / highlight.js token inside reading-mode blocks */
+.markdown-reading-view pre code .token,
+.markdown-reading-view pre code [class*="hljs-"],
+.markdown-reading-view pre code span {
+  color:       var(--gs-fg) !important;
+  background:  transparent !important;
+  text-shadow: 0 0 4px rgba(0, 255, 0, 0.45);
+}
+
+/* -- Inline code --------------------------------------------- */
+.markdown-reading-view :not(pre) > code {
+  background-color: var(--gs-bg) !important;
+  color:            var(--gs-fg) !important;
+  font-family:      var(--gs-font) !important;
+  font-size:        var(--gs-font-size) !important;
+  border:           var(--gs-border) !important;
+  border-radius:    var(--gs-radius) !important;
+  padding:          var(--gs-padding-inline) !important;
+  text-shadow:      0 0 4px rgba(0, 255, 0, 0.35);
+}
+
+/* --------------------------------------------------------------
+   2.  LIVE PREVIEW  (Source / CM6 editor)
+       Uses CodeMirror 6 class names
+   -------------------------------------------------------------- */
+/* -- Code-block lines ---------------------------------------- */
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
-	background-color: var(--osc-background-color-edit);
-	caret-color: yellow; 
-	color: var(--osc-color);
-	font-size: var(--osc-font-size-block);
-	margin-left: var(--osc-margin-left-right) !important;
-	margin-right: var(--osc-margin-left-right) !important;
-	border-left-color: #ff0000 !important;
-	> .cm-hmd-codeblock::selection {
-		background-color: var(--osc-color);
-		color: var(--osc-background-color-edit);
-	}
+  background-color: var(--gs-bg) !important;
+  color:            var(--gs-fg) !important;
+  font-family:      var(--gs-font) !important;
+  font-size:        var(--gs-font-size) !important;
+  text-shadow:      0 0 4px rgba(0, 255, 0, 0.45);
 }
 
-/* Reading inline code */
-.markdown-rendered p > code {
-	background-color: var(--osc-background-color-read);
-	color: var(--osc-color);
-	font-size: var(--osc-font-size-inline);
-	&::selection {
-		background-color: var(--osc-color);
-		color: var(--osc-background-color-read);
-	}
+/* Opening/closing fence lines (``` markers) */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+  background-color: var(--gs-bg) !important;
+  color:            #008800 !important;    /* dimmer green for fence markers */
+  font-family:      var(--gs-font) !important;
 }
 
-/* Reading code block */
-.markdown-rendered pre {
-	background-color: var(--osc-background-color-read);
-	font-size: var(--osc-font-size-block);
-	& > code {
-		color: var(--osc-color);
-		&::selection {
-			background-color: var(--osc-color);
-			color: var(--osc-background-color-read);
-		}
-	}	
-
+/* Widen the background across the full editor line width */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  padding-left:  0.6em !important;
+  padding-right: 0.6em !important;
+  margin-left:   1em   !important;
 }
 
+/* Kill CM6 syntax-token colours inside code blocks */
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-keyword,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-string,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-number,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-comment,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-operator,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-variableName,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-typeName,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span.cm-propertyName,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock span[class^="cm-"] {
+  color:      var(--gs-fg) !important;
+  background: transparent !important;
+}
+
+/* -- Inline code in Live Preview ----------------------------- */
+.markdown-source-view.mod-cm6 .cm-inline-code {
+  background-color: var(--gs-bg) !important;
+  color:            var(--gs-fg) !important;
+  font-family:      var(--gs-font) !important;
+  font-size:        var(--gs-font-size) !important;
+  border:           var(--gs-border) !important;
+  border-radius:    var(--gs-radius) !important;
+  padding:          var(--gs-padding-inline) !important;
+  text-shadow:      0 0 4px rgba(0, 255, 0, 0.35);
+}
+
+/* Backtick delimiters around inline code */
+.markdown-source-view.mod-cm6 .cm-formatting-code {
+  color:            #008800 !important;   /* dimmer for backticks */
+  background-color: var(--gs-bg) !important;
+}
+
+/* --------------------------------------------------------------
+   3.  SELECTION / HIGHLIGHT
+       Brighter selection colour inside code blocks & inline code
+   -------------------------------------------------------------- */
+/* -- Reading Mode: native ::selection on code elements ------- */
+.markdown-reading-view pre code::selection,
+.markdown-reading-view pre code *::selection,
+.markdown-reading-view :not(pre) > code::selection {
+  background-color: rgba(0, 255, 0, 0.35) !important;
+  color:            #000000 !important;
+}
+
+/* -- Live Preview: CodeMirror 6 selection layer -------------- */
+
+/* Unfocused selection (editor pane not active) */
+.markdown-source-view.mod-cm6 .cm-selectionBackground {
+  background-color: rgba(0, 255, 0, 0.25) !important;
+}
+
+/* Focused selection (editor pane active — most common case) */
+.markdown-source-view.mod-cm6.is-focused .cm-selectionBackground,
+.markdown-source-view.mod-cm6 .cm-focused .cm-selectionBackground {
+  background-color: rgba(0, 255, 0, 0.35) !important;
+}
+
+/* Native ::selection fallback inside CM6 for browsers that need it */
+.markdown-source-view.mod-cm6 .HyperMD-codeblock::selection,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock *::selection,
+.markdown-source-view.mod-cm6 .cm-inline-code::selection {
+  background-color: rgba(0, 255, 0, 0.35) !important;
+  color:            #000000 !important;
+}
