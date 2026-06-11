@@ -1,15 +1,25 @@
+/* CSS SNIPPETS ADD ICONS TO FOLDERS AND FILES                                         */
+/* I found the UNICODE values via Google and here: https://www.compart.com/en/unicode/ */
+
+/* OPEN FOLDER */ 
 .nav-folder .nav-folder-title-content:before {
 content: "\1F4C2";
+  /* UPDATE THIS PADDING AS DESIRED */
 padding-right: 2px;
 }
+/* COLLAPSED FOLDER */ 
 .nav-folder.is-collapsed .nav-folder-title-content:before {
 content: "\1F4C1";
+  /* UPDATE THIS PADDING AS DESIRED */
 padding-right: 2px;
 }
+
 .nav-file-title-content:before {
 content: "\1F4C4";
+  /* UPDATE THIS PADDING AS DESIRED */
 padding-right: 2px;
 }
+
 .nav-file-title[data-path$=".md"] .nav-file-title-content:before {
 content: "\1F4C4"; /* Page Facing Up icon */
 }
