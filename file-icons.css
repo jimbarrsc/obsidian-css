@@ -1,14 +1,14 @@
 .nav-folder .nav-folder-title-content:before {
 content: "\1F4C2";
-padding-right: 4px;
+padding-right: 2px;
 }
 .nav-folder.is-collapsed .nav-folder-title-content:before {
 content: "\1F4C1";
-padding-right: 4px;
+padding-right: 2px;
 }
 .nav-file-title-content:before {
 content: "\1F4C4";
-padding-right: 4px;
+padding-right: 2px;
 }
 .nav-file-title[data-path$=".md"] .nav-file-title-content:before {
 content: "\1F4C4"; /* Page Facing Up icon */
@@ -46,4 +46,13 @@ content: "\1f4dd"; /* Memo icon */
 .nav-file-title[data-path$=".excalidraw.md"] .nav-file-title-content:before {
 content: "\1F3A8"; /* Memo icon */
 }
-
+/* For documents(.doc, .docx) */
+.nav-file-title[data-path$=".doc"] .nav-file-title-content:before,
+.nav-file-title[data-path$=".docx"] .nav-file-title-content:before {
+content: "\1F5BA"; /* Memo icon */
+}
+/* For documents(.htm, .html) */
+.nav-file-title[data-path$=".htm"] .nav-file-title-content:before,
+.nav-file-title[data-path$=".html"] .nav-file-title-content:before {
+content: "\1F578"; /* HTML icon */
+}
