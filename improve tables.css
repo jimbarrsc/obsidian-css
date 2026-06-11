@@ -1,0 +1,40 @@
+/* Custom styling for Obsidian tables */
+.markdown-rendered table {
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+/* 1. Style the top header row */
+.markdown-rendered thead tr {
+    background-color: #d0e1fd !important; /* Light blue */
+    color: #1a202c !important; /* Dark text for readability */
+    font-weight: 600;
+}
+
+/* Style header cells specifically */
+.markdown-rendered th {
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px;
+}
+
+/* 2. Color the remaining rows (Zebra striping) */
+/* Odd rows (1st, 3rd, 5th data rows) -> Light Gray */
+.markdown-rendered tbody tr:nth-child(odd) {
+    background-color: #f8fafc !important; 
+}
+
+/* Even rows (2nd, 4th, 6th data rows) -> White */
+.markdown-rendered tbody tr:nth-child(even) {
+    background-color: #ffffff !important;
+}
+
+/* Style standard table cells */
+.markdown-rendered td {
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px 10px;
+}
+
+/* 3. wrap cell contents */
+.cm-s-obsidian .HyperMD-table-row {
+    white-space: pre-wrap;
+}
